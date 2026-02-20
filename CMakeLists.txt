@@ -10,8 +10,7 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "src/*.cc" "kernels/*.hip")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_compile_options(${PROJECT_NAME} PRIVATE
-    "$<$<COMPILE_LANGUAGE:CXX>:-Wall;-Wextra;-Wpedantic;-Werror>"
-    "$<$<COMPILE_LANGUAGE:HIP>:-Werror;all-warnings>"
+    "$<$<OR:$<COMPILE_LANGUAGE:CXX>,$<COMPILE_LANGUAGE:HIP>>:-Wall;-Wextra;-Wpedantic;-Werror>"
 )
 
 add_custom_target(run
